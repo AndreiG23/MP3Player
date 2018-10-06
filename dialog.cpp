@@ -3,6 +3,7 @@
 
 QString fileName;
 bool ok=false;
+bool isPlaying=false;
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
@@ -43,8 +44,22 @@ void Dialog::on_pushButton_clicked()
     else
     {
         //load the file
-player->setMedia(QUrl::fromLocalFile(fileName));
-player->play();
+        if(isPlaying==true)
+        {
+            player->pause();
+            isPlaying=false;
+            ui->pushButton->setText("Play");
+
+        }
+        else
+        {
+            isPlaying=true;
+            ui->pushButton->setText("Pause");
+            player->play();
+        }
+
+
+
 qDebug()<<player->errorString();
     }
 }
@@ -52,6 +67,8 @@ qDebug()<<player->errorString();
 void Dialog::on_pushButton_2_clicked()
 {
 player->stop();
+isPlaying=false;
+ui->pushButton->setText("Play");
 }
 
 void Dialog::on_positionChanged(qint64 position)
@@ -68,6 +85,7 @@ void Dialog::on_LoadButton_clicked()
 {
    fileName = QFileDialog::getOpenFileName(this, tr("Open File"),"/path/to/file/",tr("Mp3 Files (*.mp3)"));
    ok=true;
+   player->setMedia(QUrl::fromLocalFile(fileName));
 }
 
 void Dialog::on_SliderProgress_sliderReleased()
