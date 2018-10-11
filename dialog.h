@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QMediaPlayer>
+#include <QMediaPlaylist>
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -38,9 +39,16 @@ private slots:
 
     void on_SliderProgress_sliderReleased();
 
+    void on_NextButton_clicked();
+
+    void on_PreviousButton_clicked();
+
+
+
 private:
     Ui::Dialog *ui;
     QMediaPlayer* player;
+    QMediaPlaylist* playlist;
 };
 
 #endif // DIALOG_H
