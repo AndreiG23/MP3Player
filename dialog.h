@@ -43,11 +43,16 @@ private slots:
 
     void on_PreviousButton_clicked();
 
+    void getSelectedIndex();
 
 
 
 
     void on_SliderVolume_valueChanged(int value);
+
+
+
+    void on_listWidget_itemSelectionChanged();
 
 private:
     Ui::Dialog *ui;

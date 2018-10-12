@@ -5,6 +5,7 @@
 QString fileName;
 bool ok=false;
 bool isPlaying=false;
+int loaded=0;
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -79,6 +80,18 @@ isPlaying=false;
 ui->pushButton->setText("Play");
 
 }
+void Dialog::getSelectedIndex()
+{
+    if(ui->listWidget->count()==0)
+        return ;
+    QModelIndexList index=this->ui->listWidget->selectionModel()->selectedIndexes();
+    if(index.size()==0)
+    {
+        return ;
+    }
+    int idx=index.at(0).row();
+    playlist->setCurrentIndex(idx);
+}
 
 void Dialog::on_positionChanged(qint64 position)
 {
@@ -131,4 +144,19 @@ void Dialog::on_PreviousButton_clicked()
 void Dialog::on_SliderVolume_valueChanged(int value)
 {
     player->setVolume(value);
+}
+
+
+
+void Dialog::on_listWidget_itemSelectionChanged()
+{if(loaded!=0)
+    {
+        this->getSelectedIndex();
+    if(isPlaying==false)
+    {
+        isPlaying=true;
+        ui->pushButton->setText("Pause");
+        player->play();}
+    }
+    loaded++;
 }
