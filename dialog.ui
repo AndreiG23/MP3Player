@@ -133,31 +133,31 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="NextButton">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>350</x>
      <y>250</y>
-     <width>80</width>
-     <height>21</height>
+     <width>168</width>
+     <height>23</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Next</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="PreviousButton">
-   <property name="geometry">
-    <rect>
-     <x>490</x>
-     <y>250</y>
-     <width>80</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Previous</string>
-   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QPushButton" name="NextButton">
+      <property name="text">
+       <string>Next</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="PreviousButton">
+      <property name="text">
+       <string>Previous</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

@@ -136,6 +136,7 @@ void Dialog::on_PreviousButton_clicked()
     playlist->previous();
     player->stop();
 
+
     if(isPlaying==true)
     {
         player->pause();

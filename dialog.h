@@ -45,6 +45,8 @@ private slots:
 
 
 
+
+
 private:
     Ui::Dialog *ui;
     QMediaPlayer* player;
