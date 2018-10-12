@@ -120,20 +120,12 @@ void Dialog::on_SliderProgress_sliderReleased()
 void Dialog::on_NextButton_clicked()
 {
     playlist->next();
-
-
-
 }
 
 void Dialog::on_PreviousButton_clicked()
 {
     playlist->previous();
-
-
-
-
 }
-
 
 
 void Dialog::on_SliderVolume_valueChanged(int value)
