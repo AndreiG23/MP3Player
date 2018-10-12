@@ -120,30 +120,23 @@ void Dialog::on_SliderProgress_sliderReleased()
 void Dialog::on_NextButton_clicked()
 {
     playlist->next();
-    player->stop();
 
-    if(isPlaying==true)
-    {
-        player->pause();
-        isPlaying=false;
-        ui->pushButton->setText("Play");
 
-    }
+
 }
 
 void Dialog::on_PreviousButton_clicked()
 {
     playlist->previous();
-    player->stop();
 
 
-    if(isPlaying==true)
-    {
-        player->pause();
-        isPlaying=false;
-        ui->pushButton->setText("Play");
 
-    }
+
 }
 
 
+
+void Dialog::on_SliderVolume_valueChanged(int value)
+{
+    player->setVolume(value);
+}

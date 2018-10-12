@@ -47,6 +47,8 @@ private slots:
 
 
 
+    void on_SliderVolume_valueChanged(int value);
+
 private:
     Ui::Dialog *ui;
     QMediaPlayer* player;
