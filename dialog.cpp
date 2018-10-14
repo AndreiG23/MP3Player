@@ -23,6 +23,8 @@ Dialog::Dialog(QWidget *parent) :
 
     connect(player, &QMediaPlayer::positionChanged,this,&Dialog::on_positionChanged);
     connect(player, &QMediaPlayer::durationChanged,this,&Dialog::on_durationChanged);
+    ui->SliderVolume->setValue(50);
+    player->setVolume(50);
 
 }
 
@@ -36,10 +38,7 @@ void Dialog::on_SliderVolume_sliderMoved(int position)
 player->setVolume(position);
 }
 
-void Dialog::on_SliderProgress_sliderMoved(int position)
-{
-player->setPosition(position);
-}
+
 
 void Dialog::on_pushButton_clicked()
 {
@@ -105,9 +104,8 @@ ui->SliderProgress->setMaximum(position);
 
 void Dialog::on_LoadButton_clicked()
 {
-   //fileName = QFileDialog::getOpenFileName(this, tr("Open File"),"/path/to/file/",tr("Mp3 Files (*.mp3)"));
+
    ok=true;
-   //player->setMedia(QUrl::fromLocalFile(fileName));
    QString directory=QFileDialog::getExistingDirectory(this,tr("Select the directory with music files"));
    if (directory.isEmpty())
        return;
@@ -127,17 +125,20 @@ void Dialog::on_LoadButton_clicked()
 
 void Dialog::on_SliderProgress_sliderReleased()
 {
-//do nothing yet
+    player->setPosition(ui->SliderProgress->sliderPosition());
 }
 
 void Dialog::on_NextButton_clicked()
 {
     playlist->next();
+    ui->listWidget->clearSelection();
+
 }
 
 void Dialog::on_PreviousButton_clicked()
 {
     playlist->previous();
+     ui->listWidget->clearSelection();
 }
 
 
@@ -156,7 +157,9 @@ void Dialog::on_listWidget_itemSelectionChanged()
     {
         isPlaying=true;
         ui->pushButton->setText("Pause");
-        player->play();}
+        player->play();
+    }ui->listWidget->clearSelection();
     }
     loaded++;
+
 }

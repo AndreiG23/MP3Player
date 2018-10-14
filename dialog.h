@@ -9,6 +9,7 @@
 #include <QMessageBox>
 
 
+
 namespace Ui {
 class Dialog;
 }
@@ -24,7 +25,7 @@ public:
 private slots:
     void on_SliderVolume_sliderMoved(int position);
 
-    void on_SliderProgress_sliderMoved(int position);
+
 
     void on_pushButton_clicked();
 
