@@ -32,3 +32,6 @@ HEADERS += \
 
 FORMS += \
         dialog.ui
+
+RESOURCES += \
+    images.qrc
