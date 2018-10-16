@@ -19,6 +19,8 @@ Dialog::Dialog(QWidget *parent) :
     player =new QMediaPlayer(this);
     playlist =new QMediaPlaylist(player);
     player->setPlaylist(playlist);
+    player->setVolume(50);
+    ui->SliderVolume->setValue(50);
 
 
     connect(player, &QMediaPlayer::positionChanged,this,&Dialog::on_positionChanged);
@@ -36,10 +38,7 @@ void Dialog::on_SliderVolume_sliderMoved(int position)
 player->setVolume(position);
 }
 
-void Dialog::on_SliderProgress_sliderMoved(int position)
-{
-player->setPosition(position);
-}
+
 
 void Dialog::on_pushButton_clicked()
 {
@@ -105,9 +104,9 @@ ui->SliderProgress->setMaximum(position);
 
 void Dialog::on_LoadButton_clicked()
 {
-   //fileName = QFileDialog::getOpenFileName(this, tr("Open File"),"/path/to/file/",tr("Mp3 Files (*.mp3)"));
+
    ok=true;
-   //player->setMedia(QUrl::fromLocalFile(fileName));
+
    QString directory=QFileDialog::getExistingDirectory(this,tr("Select the directory with music files"));
    if (directory.isEmpty())
        return;
@@ -127,7 +126,7 @@ void Dialog::on_LoadButton_clicked()
 
 void Dialog::on_SliderProgress_sliderReleased()
 {
-//do nothing yet
+ player->setPosition(ui->SliderProgress->sliderPosition());
 }
 
 void Dialog::on_NextButton_clicked()

@@ -24,8 +24,6 @@ public:
 private slots:
     void on_SliderVolume_sliderMoved(int position);
 
-    void on_SliderProgress_sliderMoved(int position);
-
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
