@@ -56,13 +56,13 @@ void Dialog::on_pushButton_clicked()
         {
             player->pause();
             isPlaying=false;
-            ui->pushButton->setText("Play");
+            ui->pushButton->setStyleSheet("border-image: url(:/images/Play Button.png)");
 
         }
         else
         {
             isPlaying=true;
-            ui->pushButton->setText("Pause");
+            ui->pushButton->setStyleSheet("border-image: url(:/images/Pause Button.png)");
             player->play();
         }
 
@@ -72,13 +72,7 @@ qDebug()<<player->errorString();
     }
 }
 
-void Dialog::on_pushButton_2_clicked()
-{
-player->stop();
-isPlaying=false;
-ui->pushButton->setText("Play");
 
-}
 void Dialog::getSelectedIndex()
 {
     if(ui->listWidget->count()==0)
@@ -154,7 +148,7 @@ void Dialog::on_listWidget_itemSelectionChanged()
     if(isPlaying==false)
     {
         isPlaying=true;
-        ui->pushButton->setText("Pause");
+        ui->pushButton->setStyleSheet("border-image: url(:/images/Pause Button.png)");
         player->play();}
     }
     loaded++;

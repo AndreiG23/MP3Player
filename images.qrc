@@ -1,2 +1,8 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+  <qresource prefix="images">
+    <file>Next Button.png</file>
+    <file>Pause Button.png</file>
+    <file>Play Button.png</file>
+    <file>Previous Button.png</file>
+  </qresource>
+</RCC>
