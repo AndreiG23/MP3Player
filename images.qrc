@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="images">
+    <file>logo white.png</file>
+    <file>Lirik logo.png</file>
     <file>Next Button.png</file>
     <file>Pause Button.png</file>
     <file>Play Button.png</file>
