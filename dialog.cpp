@@ -101,7 +101,7 @@ void Dialog::on_LoadButton_clicked()
 
    ok=true;
 
-   QString directory=QFileDialog::getExistingDirectory(this,tr("Select the directory with music files"));
+   QString directory=QFileDialog::getExistingDirectory(this,tr("Add music directory folder"));
    if (directory.isEmpty())
        return;
    QDir dir(directory);
@@ -152,4 +152,11 @@ void Dialog::on_listWidget_itemSelectionChanged()
         player->play();}
     }
     loaded++;
+}
+
+
+
+void Dialog::on_ShuffleButton_clicked()
+{
+    playlist->shuffle();
 }

@@ -51,6 +51,10 @@ private slots:
 
     void on_listWidget_itemSelectionChanged();
 
+
+
+    void on_ShuffleButton_clicked();
+
 private:
     Ui::Dialog *ui;
     QMediaPlayer* player;
