@@ -53,7 +53,8 @@ private slots:
 
 
 
-    void on_ShuffleButton_clicked();
+
+    void on_SliderProgress_valueChanged(int value);
 
 private:
     Ui::Dialog *ui;

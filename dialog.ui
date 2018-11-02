@@ -26,7 +26,7 @@
   <property name="sizeGripEnabled">
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>12</x>
@@ -90,7 +90,7 @@
              <string notr="true">background-color: rgb(182, 182, 182);</string>
             </property>
             <property name="text">
-             <string>Shuffle</string>
+             <string>Filter</string>
             </property>
            </widget>
           </item>

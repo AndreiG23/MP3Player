@@ -126,11 +126,13 @@ void Dialog::on_SliderProgress_sliderReleased()
 void Dialog::on_NextButton_clicked()
 {
     playlist->next();
+    ui->listWidget->setCurrentRow(playlist->currentIndex());
 }
 
 void Dialog::on_PreviousButton_clicked()
 {
     playlist->previous();
+    ui->listWidget->setCurrentRow(playlist->currentIndex());
 }
 
 
@@ -150,13 +152,16 @@ void Dialog::on_listWidget_itemSelectionChanged()
         isPlaying=true;
         ui->pushButton->setStyleSheet("border-image: url(:/images/Pause Button.png)");
         player->play();}
+
     }
     loaded++;
 }
 
 
 
-void Dialog::on_ShuffleButton_clicked()
+
+
+void Dialog::on_SliderProgress_valueChanged(int value)
 {
-    playlist->shuffle();
+    if(value==ui->SliderProgress->maximum())ui->listWidget->setCurrentRow(playlist->currentIndex()+1);
 }
