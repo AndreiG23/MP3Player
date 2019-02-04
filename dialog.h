@@ -56,6 +56,10 @@ private slots:
 
     void on_SliderProgress_valueChanged(int value);
 
+    void on_ShuffleButton_clicked();
+
+    void on_SliderSpeed_sliderReleased();
+
 private:
     Ui::Dialog *ui;
     QMediaPlayer* player;

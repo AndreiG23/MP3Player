@@ -41,12 +41,15 @@ public:
     QPushButton *LoadButton;
     QVBoxLayout *verticalLayout_2;
     QSlider *SliderProgress;
+    QHBoxLayout *horizontalLayout_6;
     QHBoxLayout *horizontalLayout_4;
+    QSlider *SliderSpeed;
     QSpacerItem *horizontalSpacer_3;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *PreviousButton;
     QPushButton *pushButton;
     QPushButton *NextButton;
+    QHBoxLayout *horizontalLayout_5;
     QSpacerItem *horizontalSpacer_4;
     QLabel *label;
     QSlider *SliderVolume;
@@ -63,7 +66,7 @@ public:
         Dialog->setSizeGripEnabled(false);
         layoutWidget = new QWidget(Dialog);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(12, 13, 611, 341));
+        layoutWidget->setGeometry(QRect(13, 14, 611, 341));
         verticalLayout_3 = new QVBoxLayout(layoutWidget);
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -134,12 +137,32 @@ public:
 
         verticalLayout_2->addWidget(SliderProgress);
 
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setSpacing(6);
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalSpacer_3 = new QSpacerItem(218, 38, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        SliderSpeed = new QSlider(layoutWidget);
+        SliderSpeed->setObjectName(QStringLiteral("SliderSpeed"));
+        SliderSpeed->setStyleSheet(QLatin1String("QSlider::handle:horizontal\n"
+"{\n"
+"background-color: rgb(182, 182, 182);\n"
+"}"));
+        SliderSpeed->setMinimum(1);
+        SliderSpeed->setMaximum(100);
+        SliderSpeed->setPageStep(10);
+        SliderSpeed->setValue(50);
+        SliderSpeed->setOrientation(Qt::Horizontal);
+
+        horizontalLayout_4->addWidget(SliderSpeed);
+
+        horizontalSpacer_3 = new QSpacerItem(118, 38, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_4->addItem(horizontalSpacer_3);
+
+
+        horizontalLayout_6->addLayout(horizontalLayout_4);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
@@ -170,18 +193,21 @@ public:
         horizontalLayout_3->addWidget(NextButton);
 
 
-        horizontalLayout_4->addLayout(horizontalLayout_3);
+        horizontalLayout_6->addLayout(horizontalLayout_3);
 
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setSpacing(6);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         horizontalSpacer_4 = new QSpacerItem(27, 28, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_4->addItem(horizontalSpacer_4);
+        horizontalLayout_5->addItem(horizontalSpacer_4);
 
         label = new QLabel(layoutWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setMinimumSize(QSize(30, 30));
         label->setStyleSheet(QStringLiteral("border-image: url(:/images/Sound.png);"));
 
-        horizontalLayout_4->addWidget(label);
+        horizontalLayout_5->addWidget(label);
 
         SliderVolume = new QSlider(layoutWidget);
         SliderVolume->setObjectName(QStringLiteral("SliderVolume"));
@@ -193,10 +219,13 @@ public:
         SliderVolume->setValue(99);
         SliderVolume->setOrientation(Qt::Horizontal);
 
-        horizontalLayout_4->addWidget(SliderVolume);
+        horizontalLayout_5->addWidget(SliderVolume);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_4);
+        horizontalLayout_6->addLayout(horizontalLayout_5);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_6);
 
 
         verticalLayout_3->addLayout(verticalLayout_2);
@@ -211,7 +240,7 @@ public:
     {
         Dialog->setWindowTitle(QApplication::translate("Dialog", "LIRIK Music Player", nullptr));
         label_2->setText(QString());
-        ShuffleButton->setText(QApplication::translate("Dialog", "Filter", nullptr));
+        ShuffleButton->setText(QApplication::translate("Dialog", "Shuffle", nullptr));
         LoadButton->setText(QApplication::translate("Dialog", "Add", nullptr));
         PreviousButton->setText(QString());
         pushButton->setText(QString());

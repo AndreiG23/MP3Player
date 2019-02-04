@@ -1,11 +1,19 @@
 #include "dialog.h"
 #include "ui_dialog.h"
+#include <QRandomGenerator>
+#include <QTime>
+
+
+
 
 //global variables:
 QString fileName;
 bool ok=false;
 bool isPlaying=false;
+bool shuffle=false;
 int loaded=0;
+int nr,prev;
+float speed=1.0;
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -21,6 +29,8 @@ Dialog::Dialog(QWidget *parent) :
     player->setPlaylist(playlist);
     player->setVolume(50);
     ui->SliderVolume->setValue(50);
+    ui->SliderSpeed->setValue(50);
+
 
 
     connect(player, &QMediaPlayer::positionChanged,this,&Dialog::on_positionChanged);
@@ -36,6 +46,8 @@ Dialog::~Dialog()
 void Dialog::on_SliderVolume_sliderMoved(int position)
 {
 player->setVolume(position);
+
+
 }
 
 
@@ -125,14 +137,39 @@ void Dialog::on_SliderProgress_sliderReleased()
 
 void Dialog::on_NextButton_clicked()
 {
-    playlist->next();
-    ui->listWidget->setCurrentRow(playlist->currentIndex());
+    if(!shuffle)
+    {
+        playlist->next();
+        ui->listWidget->setCurrentRow(playlist->currentIndex());
+    }
+    else
+    {
+        QTime time=QTime::currentTime();
+
+        qsrand((int)time.msec());
+        prev=nr;
+        nr=qrand()%ui->listWidget->count();
+
+        playlist->setCurrentIndex(nr);
+        ui->listWidget->setCurrentRow(nr);
+
+
+    }
 }
+
 
 void Dialog::on_PreviousButton_clicked()
 {
-    playlist->previous();
-    ui->listWidget->setCurrentRow(playlist->currentIndex());
+    if(!shuffle)
+    {
+        playlist->previous();
+        ui->listWidget->setCurrentRow(playlist->currentIndex());
+    }
+    else
+    {
+        playlist->setCurrentIndex(prev);
+        ui->listWidget->setCurrentRow(prev);
+    }
 }
 
 
@@ -164,4 +201,28 @@ void Dialog::on_listWidget_itemSelectionChanged()
 void Dialog::on_SliderProgress_valueChanged(int value)
 {
     if(value==ui->SliderProgress->maximum())ui->listWidget->setCurrentRow(playlist->currentIndex()+1);
+
+
+}
+
+void Dialog::on_ShuffleButton_clicked()
+{
+    if(!shuffle){
+        shuffle=true;
+        ui->ShuffleButton->setFlat(true);
+    }
+    else
+    {
+        shuffle=false;
+        ui->ShuffleButton->setFlat(false);
+    }
+
+
+}
+
+void Dialog::on_SliderSpeed_sliderReleased()
+{
+
+    player->setPlaybackRate(qreal(ui->SliderSpeed->sliderPosition())/50.0);
+
 }
