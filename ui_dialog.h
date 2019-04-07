@@ -17,6 +17,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
@@ -29,14 +30,14 @@ QT_BEGIN_NAMESPACE
 class Ui_Dialog
 {
 public:
-    QWidget *layoutWidget;
+    QWidget *widget;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
     QVBoxLayout *verticalLayout;
     QListWidget *listWidget;
     QHBoxLayout *horizontalLayout;
-    QSpacerItem *horizontalSpacer;
+    QLineEdit *lineEdit;
     QPushButton *ShuffleButton;
     QPushButton *LoadButton;
     QVBoxLayout *verticalLayout_2;
@@ -64,10 +65,10 @@ public:
         Dialog->setStyleSheet(QLatin1String("background-color: rgb(42, 42, 42);\n"
 ""));
         Dialog->setSizeGripEnabled(false);
-        layoutWidget = new QWidget(Dialog);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(13, 14, 611, 341));
-        verticalLayout_3 = new QVBoxLayout(layoutWidget);
+        widget = new QWidget(Dialog);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(14, 16, 601, 341));
+        verticalLayout_3 = new QVBoxLayout(widget);
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
@@ -75,7 +76,7 @@ public:
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        label_2 = new QLabel(layoutWidget);
+        label_2 = new QLabel(widget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setMinimumSize(QSize(300, 225));
         label_2->setStyleSheet(QStringLiteral("border-image: url(:/images/logo white.png);"));
@@ -85,7 +86,7 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        listWidget = new QListWidget(layoutWidget);
+        listWidget = new QListWidget(widget);
         listWidget->setObjectName(QStringLiteral("listWidget"));
         listWidget->setStyleSheet(QStringLiteral("background-color: rgb(182, 182, 182);"));
 
@@ -94,11 +95,12 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        lineEdit = new QLineEdit(widget);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
 
-        horizontalLayout->addItem(horizontalSpacer);
+        horizontalLayout->addWidget(lineEdit);
 
-        ShuffleButton = new QPushButton(layoutWidget);
+        ShuffleButton = new QPushButton(widget);
         ShuffleButton->setObjectName(QStringLiteral("ShuffleButton"));
         QFont font;
         font.setBold(true);
@@ -108,7 +110,7 @@ public:
 
         horizontalLayout->addWidget(ShuffleButton);
 
-        LoadButton = new QPushButton(layoutWidget);
+        LoadButton = new QPushButton(widget);
         LoadButton->setObjectName(QStringLiteral("LoadButton"));
         LoadButton->setFont(font);
         LoadButton->setStyleSheet(QStringLiteral("background-color: rgb(182, 182, 182);"));
@@ -127,7 +129,7 @@ public:
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        SliderProgress = new QSlider(layoutWidget);
+        SliderProgress = new QSlider(widget);
         SliderProgress->setObjectName(QStringLiteral("SliderProgress"));
         SliderProgress->setStyleSheet(QLatin1String("QSlider::handle:horizontal\n"
 "{\n"
@@ -143,7 +145,7 @@ public:
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        SliderSpeed = new QSlider(layoutWidget);
+        SliderSpeed = new QSlider(widget);
         SliderSpeed->setObjectName(QStringLiteral("SliderSpeed"));
         SliderSpeed->setStyleSheet(QLatin1String("QSlider::handle:horizontal\n"
 "{\n"
@@ -167,7 +169,7 @@ public:
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        PreviousButton = new QPushButton(layoutWidget);
+        PreviousButton = new QPushButton(widget);
         PreviousButton->setObjectName(QStringLiteral("PreviousButton"));
         PreviousButton->setMinimumSize(QSize(40, 40));
         PreviousButton->setStyleSheet(QStringLiteral("border-image: url(:/images/Previous Button.png);"));
@@ -175,7 +177,7 @@ public:
 
         horizontalLayout_3->addWidget(PreviousButton);
 
-        pushButton = new QPushButton(layoutWidget);
+        pushButton = new QPushButton(widget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setMinimumSize(QSize(40, 40));
         pushButton->setStyleSheet(QLatin1String("border-image: url(:/images/Play Button.png);\n"
@@ -184,7 +186,7 @@ public:
 
         horizontalLayout_3->addWidget(pushButton);
 
-        NextButton = new QPushButton(layoutWidget);
+        NextButton = new QPushButton(widget);
         NextButton->setObjectName(QStringLiteral("NextButton"));
         NextButton->setMinimumSize(QSize(40, 40));
         NextButton->setStyleSheet(QStringLiteral("border-image: url(:/images/Next Button.png);"));
@@ -202,14 +204,14 @@ public:
 
         horizontalLayout_5->addItem(horizontalSpacer_4);
 
-        label = new QLabel(layoutWidget);
+        label = new QLabel(widget);
         label->setObjectName(QStringLiteral("label"));
         label->setMinimumSize(QSize(30, 30));
         label->setStyleSheet(QStringLiteral("border-image: url(:/images/Sound.png);"));
 
         horizontalLayout_5->addWidget(label);
 
-        SliderVolume = new QSlider(layoutWidget);
+        SliderVolume = new QSlider(widget);
         SliderVolume->setObjectName(QStringLiteral("SliderVolume"));
         SliderVolume->setMinimumSize(QSize(20, 20));
         SliderVolume->setStyleSheet(QLatin1String("QSlider::handle:horizontal\n"
@@ -240,6 +242,7 @@ public:
     {
         Dialog->setWindowTitle(QApplication::translate("Dialog", "LIRIK Music Player", nullptr));
         label_2->setText(QString());
+        lineEdit->setText(QString());
         ShuffleButton->setText(QApplication::translate("Dialog", "Shuffle", nullptr));
         LoadButton->setText(QApplication::translate("Dialog", "Add", nullptr));
         PreviousButton->setText(QString());

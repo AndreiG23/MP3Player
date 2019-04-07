@@ -2,6 +2,7 @@
 #include "ui_dialog.h"
 #include <QRandomGenerator>
 #include <QTime>
+#include <QRegExp>
 
 
 
@@ -14,6 +15,8 @@ bool shuffle=false;
 int loaded=0;
 int nr,prev;
 float speed=1.0;
+QStringList files;
+QString directory;
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -113,11 +116,11 @@ void Dialog::on_LoadButton_clicked()
 
    ok=true;
 
-   QString directory=QFileDialog::getExistingDirectory(this,tr("Add music directory folder"));
+   directory=QFileDialog::getExistingDirectory(this,tr("Add music directory folder"));
    if (directory.isEmpty())
        return;
    QDir dir(directory);
-   QStringList files=dir.entryList(QStringList()<<"*.mp3",QDir::Files);
+   files=dir.entryList(QStringList()<<"*.mp3",QDir::Files);
    QList<QMediaContent> content;
    for(const QString& f:files)
    {
@@ -200,7 +203,30 @@ void Dialog::on_listWidget_itemSelectionChanged()
 
 void Dialog::on_SliderProgress_valueChanged(int value)
 {
-    if(value==ui->SliderProgress->maximum())ui->listWidget->setCurrentRow(playlist->currentIndex()+1);
+    if(value==ui->SliderProgress->maximum()&&!shuffle)
+        if(ui->listWidget->currentRow()==ui->listWidget->count()-1)
+        {
+        ui->listWidget->setCurrentRow(0);
+        player->playlist()->setCurrentIndex(0);
+        }
+           else
+        {
+            ui->listWidget->setCurrentRow(playlist->currentIndex()+1);
+        }
+    if(value==ui->SliderProgress->maximum()&&shuffle)
+    {
+        QTime time=QTime::currentTime();
+
+        qsrand((int)time.msec());
+        prev=nr;
+        nr=qrand()%ui->listWidget->count();
+
+        playlist->setCurrentIndex(nr);
+        ui->listWidget->setCurrentRow(nr);
+
+
+    }
+
 
 
 }
@@ -225,4 +251,23 @@ void Dialog::on_SliderSpeed_sliderReleased()
 
     player->setPlaybackRate(qreal(ui->SliderSpeed->sliderPosition())/50.0);
 
+}
+
+
+
+void Dialog::on_lineEdit_textChanged(const QString &arg1)
+{
+   QRegExp regexp(arg1,Qt::CaseInsensitive,QRegExp::Wildcard);
+   ui->listWidget->clear();
+   ui->listWidget->addItems(files.filter(regexp));
+   QList<QMediaContent> content;
+   QDir dir(directory);
+   for(const QString& f:files.filter(regexp))
+   {
+       content.push_back(QUrl::fromLocalFile(dir.path()+"/"+f));
+   }
+   playlist->clear();
+   playlist->addMedia(content);
+   isPlaying=false;
+   ui->pushButton->setStyleSheet("border-image: url(:/images/Play Button.png)");
 }

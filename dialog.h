@@ -60,6 +60,9 @@ private slots:
 
     void on_SliderSpeed_sliderReleased();
 
+
+    void on_lineEdit_textChanged(const QString &arg1);
+
 private:
     Ui::Dialog *ui;
     QMediaPlayer* player;
